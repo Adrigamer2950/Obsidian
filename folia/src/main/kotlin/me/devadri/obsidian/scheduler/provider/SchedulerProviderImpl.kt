@@ -17,7 +17,7 @@ class SchedulerProviderImpl(val plugin: Plugin, folia: Boolean) : SchedulerProvi
     val asyncScheduler: AsyncScheduler = if (folia) {
         AsyncFoliaScheduler(plugin)
     } else {
-        AsyncPaperScheduler(plugin)
+        AsyncPaperScheduler(plugin, this)
     }
 
     val syncScheduler: Scheduler = if (folia) {

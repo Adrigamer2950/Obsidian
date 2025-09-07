@@ -11,9 +11,10 @@ import org.bukkit.entity.Entity
 import org.bukkit.plugin.Plugin
 import java.util.concurrent.TimeUnit
 
-class AsyncPaperScheduler(val plugin: Plugin) : AsyncScheduler {
+class AsyncPaperScheduler(val plugin: Plugin, private val provider: SchedulerProvider) : AsyncScheduler {
 
-    val syncScheduler = SchedulerProvider.create(plugin, false).sync()
+    val syncScheduler
+        get() = provider.sync()
 
     override fun run(func: (ScheduledTask) -> Unit): ScheduledTask {
         val task = ScheduledTask(plugin)

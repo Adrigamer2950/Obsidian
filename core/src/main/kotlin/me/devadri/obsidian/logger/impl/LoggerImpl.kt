@@ -1,12 +1,14 @@
 package me.devadri.obsidian.logger.impl
 
 import me.devadri.obsidian.ObsidianPlugin
+import me.devadri.obsidian.colors.Colors
 import me.devadri.obsidian.logger.Logger
 import me.devadri.obsidian.logger.builder.LogBuilder
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import org.bukkit.Bukkit
 import java.util.logging.Level
+import java.util.logging.LogRecord
 import java.util.logging.Logger as JavaLogger
 
 @Suppress("unused")
@@ -23,7 +25,7 @@ class LoggerImpl(name: String, parent: JavaLogger? = Bukkit.getServer().logger) 
 
     private fun parseMessage(msg: Any): String {
         return if (msg is Component) {
-            PlainTextComponentSerializer.plainText().serialize(msg)
+            LegacyComponentSerializer.legacyAmpersand().serialize(msg)
         } else {
             msg.toString()
         }
@@ -41,5 +43,11 @@ class LoggerImpl(name: String, parent: JavaLogger? = Bukkit.getServer().logger) 
         val message = parseMessage(log.message)
 
         super.log(log.level, "$prefix$message", log.throwable)
+    }
+
+    override fun log(record: LogRecord) {
+        record.message = Colors.legacyToAnsi(record.message)
+
+        super.log(record)
     }
 }

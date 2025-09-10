@@ -1,6 +1,6 @@
 pluginManagement {
     plugins {
-        kotlin("jvm") version "2.2.10"
+        kotlin("jvm") version "2.2.20"
         id("io.papermc.paperweight.userdev") version "2.0.0-SNAPSHOT"
     }
     repositories {

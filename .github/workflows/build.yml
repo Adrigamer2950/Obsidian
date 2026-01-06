@@ -31,7 +31,7 @@ jobs:
       - name: Build Artifact
         run: "chmod +x ./gradlew && ./gradlew build"
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         name: Save Artifact
         with:
           name: "Obsidian-b${{ github.run_number }}"

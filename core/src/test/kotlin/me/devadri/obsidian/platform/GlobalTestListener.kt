@@ -9,13 +9,13 @@ import be.seeseemelk.mockbukkit.MockBukkit
 
 class GlobalTestListener : TestExecutionListener {
 
-    override fun testPlanExecutionStarted(testPlan: TestPlan?) {
+    override fun testPlanExecutionStarted(testPlan: TestPlan) {
         server = MockBukkit.mock()
 
         plugin = MockBukkit.load(TestPlugin::class.java)
     }
 
-    override fun testPlanExecutionFinished(testPlan: TestPlan?) {
+    override fun testPlanExecutionFinished(testPlan: TestPlan) {
         MockBukkit.unmock()
     }
 }

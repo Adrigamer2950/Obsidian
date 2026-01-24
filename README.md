@@ -24,7 +24,8 @@ some issues if server owners install some plugins that depend on different versi
 
 > [!WARNING]
 > You need to set your plugin to use Spigot mappings in order to preserve compatibility with 
-> Paper forks that are still using Spigot mappings.
+> Paper forks that are still using Spigot mappings, and also for Obsidian to work properly, as it
+> is compiled using Spigot mappings
 > More information in the [PaperMC documentation](https://docs.papermc.io/paper/dev/project-setup/#plugin-remapping)
 
 > [!WARNING]

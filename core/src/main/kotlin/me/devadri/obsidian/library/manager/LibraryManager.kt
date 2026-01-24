@@ -54,10 +54,11 @@ interface LibraryManager {
     companion object {
         /**
          * @param plugin The plugin
+         * @param pluginFolder The plugin folder where libraries will be stored. Defaults to the plugin name. It's useful to share libraries between plugins
          * @return A new instance of [LibraryManager]
          */
         @JvmStatic
-        fun get(plugin: Plugin): LibraryManager {
+        fun get(plugin: Plugin, pluginFolder: String = plugin.name): LibraryManager {
             return LibraryManagerImpl(plugin)
         }
     }

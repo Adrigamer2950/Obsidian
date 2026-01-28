@@ -87,6 +87,8 @@ abstract class ObsidianPlugin : JavaPlugin {
         }
 
     final override fun onLoad() {
+        val preLoadTime = System.currentTimeMillis()
+
         this.libraryManager = LibraryManager.get(this)
 
         val libMan = LibraryManagerImpl(this, "Obsidian")
@@ -120,10 +122,14 @@ abstract class ObsidianPlugin : JavaPlugin {
             logger.debug("&6Debug mode was enabled because -Dadriapi.debug flag was set to true")
         }
 
-        this.onPreLoad()
+        onPreLoad()
+
+        logger.info("&6Loaded in ${System.currentTimeMillis() - preLoadTime}ms")
     }
 
     final override fun onEnable() {
+        val postLoadTime = System.currentTimeMillis()
+
         logger.debug("&6Loading hooks...")
         loadHooks()
 
@@ -133,9 +139,13 @@ abstract class ObsidianPlugin : JavaPlugin {
         autoRegister()
 
         onPostLoad()
+
+        logger.info("&6Enabled in ${System.currentTimeMillis() - postLoadTime}ms")
     }
 
     final override fun onDisable() {
+        val stoppingTime = System.currentTimeMillis()
+
         logger.debug("&6Disabling plugin...")
         onUnload()
 
@@ -148,6 +158,8 @@ abstract class ObsidianPlugin : JavaPlugin {
 
         logger.debug("&6Cancelling all scheduler tasks...")
         ScheduledTask.cancelAll(this)
+
+        logger.info("&cStopped in ${System.currentTimeMillis() - stoppingTime}ms")
     }
 
     private fun loadHooks() {

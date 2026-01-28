@@ -150,7 +150,7 @@ tasks.withType(AbstractRun::class) {
     }
     jvmArgs(
         // Debug
-        "-Dadriapi.debug=true",
+        "-Dobsidian.debug=true",
 
         // Hot Swap
         "-XX:+AllowEnhancedClassRedefinition",

@@ -115,11 +115,11 @@ abstract class ObsidianPlugin : JavaPlugin {
                 .build()
         )
 
-        System.getProperty("adriapi.debug")?.let {
+        System.getProperty("obsidian.debug")?.let {
             if (it != "true") return@let
 
             this.debug = true
-            logger.debug("&6Debug mode was enabled because -Dadriapi.debug flag was set to true")
+            logger.debug("&6Debug mode was enabled because -Dobsidian.debug flag was set to true")
         }
 
         onPreLoad()

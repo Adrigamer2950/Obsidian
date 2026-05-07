@@ -4,5 +4,9 @@
   "mode": "full",
   "dependencyDashboardApproval": false,
   "dependencyDashboard": false,
-  "autoApprove": true
+  "autoApprove": true,
+  "ignoreDeps": [
+    "io.papermc.paper:paper-api",
+    "dev.folia:folia-api"
+  ]
 }

@@ -1,5 +1,5 @@
 [versions]
-folia-api = "26.1.2.build.8-stable"
+folia-api = "1.20.4-R0.1-SNAPSHOT"
 jansi = "2.4.3"
 jetbrains-annotations = "26.1.0"
 plugin-yml = "0.6.0"

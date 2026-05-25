@@ -59,7 +59,7 @@ interface LibraryManager {
          */
         @JvmStatic
         fun get(plugin: Plugin, pluginFolder: String = plugin.name): LibraryManager {
-            return LibraryManagerImpl(plugin)
+            return LibraryManagerImpl(plugin, pluginFolder)
         }
     }
 }

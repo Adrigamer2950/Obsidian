@@ -152,6 +152,9 @@ tasks.withType(AbstractRun::class) {
         // Debug
         "-Dobsidian.debug=true",
 
+        // Misc
+        "-Dcom.mojang.eula.agree=true",
+
         // Hot Swap
         "-XX:+AllowEnhancedClassRedefinition",
 

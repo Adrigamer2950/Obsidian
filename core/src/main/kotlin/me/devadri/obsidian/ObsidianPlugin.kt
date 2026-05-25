@@ -124,7 +124,7 @@ abstract class ObsidianPlugin : JavaPlugin {
 
         onPreLoad()
 
-        logger.info("&6Loaded in ${System.currentTimeMillis() - preLoadTime}ms")
+        logger.info("&6Loading phase took ${System.currentTimeMillis() - preLoadTime}ms")
     }
 
     final override fun onEnable() {
@@ -140,7 +140,7 @@ abstract class ObsidianPlugin : JavaPlugin {
 
         onPostLoad()
 
-        logger.info("&6Enabled in ${System.currentTimeMillis() - postLoadTime}ms")
+        logger.info("&6Starting phase took ${System.currentTimeMillis() - postLoadTime}ms")
     }
 
     final override fun onDisable() {
@@ -159,7 +159,7 @@ abstract class ObsidianPlugin : JavaPlugin {
         logger.debug("&6Cancelling all scheduler tasks...")
         ScheduledTask.cancelAll(this)
 
-        logger.info("&cStopped in ${System.currentTimeMillis() - stoppingTime}ms")
+        logger.info("&cStopping phase took ${System.currentTimeMillis() - stoppingTime}ms")
     }
 
     private fun loadHooks() {

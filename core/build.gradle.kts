@@ -140,45 +140,43 @@ dependencies {
         isTransitive = false
     }
 
-    compileOnly(project(":nms:1_17_R1"))
-    implementation(project(":nms:1_17_R1", "reobf"))
+    // NMS 1.17
+    shadow(project(":nms:1_17_R1", "reobf"))
 
-    compileOnly(project(":nms:1_18_R1"))
-    implementation(project(":nms:1_18_R1", "reobf"))
+    // NMS 1.18
+    shadow(project(":nms:1_18_R1", "reobf"))
+    shadow(project(":nms:1_18_R2", "reobf"))
 
-    compileOnly(project(":nms:1_18_R2"))
-    implementation(project(":nms:1_18_R2", "reobf"))
+    // NMS 1.19
+    shadow(project(":nms:1_19_R1", "reobf"))
+    shadow(project(":nms:1_19_R2", "reobf"))
+    shadow(project(":nms:1_19_R3", "reobf"))
 
-    compileOnly(project(":nms:1_19_R1"))
-    implementation(project(":nms:1_19_R1", "reobf"))
+    // NMS 1.20
+    shadow(project(":nms:1_20_R1", "reobf"))
+    shadow(project(":nms:1_20_R2", "reobf"))
+    shadow(project(":nms:1_20_R3", "reobf"))
+    shadow(project(":nms:1_20_R4", "reobf"))
 
-    compileOnly(project(":nms:1_19_R2"))
-    implementation(project(":nms:1_19_R2", "reobf"))
-
-    compileOnly(project(":nms:1_19_R3"))
-    implementation(project(":nms:1_19_R3", "reobf"))
-
-    compileOnly(project(":nms:1_20_R1"))
-    implementation(project(":nms:1_20_R1", "reobf"))
-
-    compileOnly(project(":nms:1_20_R2"))
-    implementation(project(":nms:1_20_R2", "reobf"))
-
-    compileOnly(project(":nms:1_20_R3"))
-    implementation(project(":nms:1_20_R3", "reobf"))
-
-    compileOnly(project(":nms:1_20_R4"))
-    implementation(project(":nms:1_20_R4", "reobf"))
-
-    implementation(project(":nms:1_21_R1", "reobf"))
-    implementation(project(":nms:1_21_R2", "reobf"))
-    implementation(project(":nms:1_21_R3", "reobf"))
-    implementation(project(":nms:1_21_R4", "reobf"))
+    // NMS 1.21
+    shadow(project(":nms:1_21_R1", "reobf"))
+    shadow(project(":nms:1_21_R2", "reobf"))
+    shadow(project(":nms:1_21_R3", "reobf"))
+    shadow(project(":nms:1_21_R4", "reobf"))
 
     testImplementation(kotlin("test"))
     testImplementation(libs.junit.platform.launcher)
     testImplementation(libs.mockbukkit)
     testImplementation(libs.slf4j.jdk14)
+}
+
+configurations.named("compileClasspath") {
+    attributes {
+        attribute(
+            TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE,
+            21
+        )
+    }
 }
 
 tasks.named<ShadowJar>("shadowJar") {

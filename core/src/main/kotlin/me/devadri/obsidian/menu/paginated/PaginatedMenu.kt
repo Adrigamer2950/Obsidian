@@ -47,6 +47,8 @@ abstract class PaginatedMenu<T> protected constructor(
      * If you override this method, make sure to call super.setup()
      */
     override fun setup() {
+        buttons.clear()
+
         addButton(nextPageButton, previousPageButton, currentPageButton)
 
         fillPage()

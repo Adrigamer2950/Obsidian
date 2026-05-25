@@ -31,6 +31,10 @@ allprojects {
             name = "JitPack"
             url = uri("https://jitpack.io")
         }
+        maven {
+            name = "AlessioDP"
+            url = uri("https://repo.alessiodp.com/snapshots")
+        }
     }
 
     dependencies {

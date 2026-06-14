@@ -71,7 +71,7 @@ class CommandManager(val plugin: ObsidianPlugin) {
             .filter { it is Command }
             .map { it as Command }
             .filter { it.plugin == this.plugin }
-            .filter { it.info.name == name }
+            .filter { it.metadata.name == name }
             .findFirst()
     }
 

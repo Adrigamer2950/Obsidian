@@ -28,10 +28,10 @@ class Command : AbstractTestPlatform() {
         val player = server.addPlayer()
         val user = player.toUser()
 
-        val result = command.tabComplete(user, arrayOf("test1", "test2"), command.info.name)
+        val result = command.tabComplete(user, arrayOf("test1", "test2"), command.metadata.name)
 
         assertTrue(result.isNotEmpty(), "Tab-complete should not be empty")
-        assertTrue(result.size == 2, "Tab-complete array should have only 2 elements")
+        assertEquals(result.size, 2, "Tab-complete array should have only 2 elements")
         assertEquals("test3", result[0], "First element should be 'test2'")
         assertEquals("test4", result[1], "Second element should be 'test3'")
     }

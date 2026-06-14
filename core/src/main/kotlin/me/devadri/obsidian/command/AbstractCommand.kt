@@ -25,21 +25,21 @@ abstract class AbstractCommand @JvmOverloads constructor(
     usage: String = "/$name"
 ) : BukkitCommand(name, description, usage, aliases), Command {
 
-    override var info: CommandInfo = CommandInfo(this.name, this.description, this.aliases)
+    override var metadata: CommandMetadata = CommandMetadata(this.name, this.description, this.aliases)
 
     override fun setDescription(description: String): BukkitCommand = apply {
-        this.info = CommandInfo(this.name, description, this.aliases)
+        this.metadata = CommandMetadata(this.name, description, this.aliases)
         this.description = description
     }
 
     override fun setAliases(aliases: List<String>): BukkitCommand = apply {
-        this.info = CommandInfo(this.name, this.description, aliases)
+        this.metadata = CommandMetadata(this.name, this.description, aliases)
         this.aliases = aliases
     }
 
     override fun setName(name: String): Boolean {
         if (!isRegistered) {
-            this.info = CommandInfo(name, this.description, this.aliases)
+            this.metadata = CommandMetadata(name, this.description, this.aliases)
             this.name = name
             return true
         } else {
@@ -73,7 +73,7 @@ abstract class AbstractCommand @JvmOverloads constructor(
         args: Array<out String>,
         location: Location?
     ): List<String?> {
-        return tabComplete(sender.toUser(), args, this.info.name)
+        return tabComplete(sender.toUser(), args, this.metadata.name)
     }
 
     @JvmOverloads
@@ -96,7 +96,7 @@ abstract class AbstractCommand @JvmOverloads constructor(
             return
         }
 
-        val subCommand = this.subCommands.firstOrNull { it.info.name == args[0] || it.info.aliases.contains(args[0]) }
+        val subCommand = this.subCommands.firstOrNull { it.metadata.name == args[0] || it.metadata.aliases.contains(args[0]) }
 
         if (subCommand == null) {
             help?.execute(user, args, commandLabel)
@@ -121,14 +121,14 @@ abstract class AbstractCommand @JvmOverloads constructor(
 
         if (subCommands.isEmpty()) return listOf()
 
-        if (args.isEmpty()) return subCommands.map { it.info.name }
+        if (args.isEmpty()) return subCommands.map { it.metadata.name }
 
-        val subCommand = this.subCommands.firstOrNull { it.info.name == args[0] || it.info.aliases.contains(args[0]) }
+        val subCommand = this.subCommands.firstOrNull { it.metadata.name == args[0] || it.metadata.aliases.contains(args[0]) }
 
         if (subCommand == null) {
             return listOf(
-                *subCommands.map { it.info.name }.toTypedArray(),
-                *subCommands.flatMap { it.info.aliases }.toTypedArray()
+                *subCommands.map { it.metadata.name }.toTypedArray(),
+                *subCommands.flatMap { it.metadata.aliases }.toTypedArray()
             ).filter { it.startsWith(args[0]) }
         }
 
@@ -139,7 +139,7 @@ abstract class AbstractCommand @JvmOverloads constructor(
 
     private fun findHelpCommand(): Command? {
         return this.subCommands.firstOrNull {
-            it.info.name == "help"
+            it.metadata.name == "help"
         }
     }
 

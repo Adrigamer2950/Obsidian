@@ -15,7 +15,7 @@ typealias BukkitCommand = org.bukkit.command.Command
  */
 interface Command {
 
-    val info: CommandInfo
+    val metadata: CommandMetadata
 
     val plugin: ObsidianPlugin
 

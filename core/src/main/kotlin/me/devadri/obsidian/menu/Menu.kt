@@ -33,7 +33,7 @@ abstract class Menu protected constructor(
             inventory.setItem(
                 button.coordinates.toSlot(),
                 button.item.addPersistentData(
-                    NamespacedKey(plugin, "adriapi_menu_button_id"),
+                    NamespacedKey(plugin, "obsidian_menu_button_id"),
                     DataTypes.UUID, button.id
                 ).build()
             )
@@ -47,9 +47,9 @@ abstract class Menu protected constructor(
 
         val meta = stack.itemMeta ?: return
 
-        if (!meta.persistentDataContainer.has(NamespacedKey(plugin, "adriapi_menu_button_id"), DataTypes.UUID)) return
+        if (!meta.persistentDataContainer.has(NamespacedKey(plugin, "obsidian_menu_button_id"), DataTypes.UUID)) return
 
-        val id = meta.persistentDataContainer.get(NamespacedKey(plugin, "adriapi_menu_button_id"), DataTypes.UUID)
+        val id = meta.persistentDataContainer.get(NamespacedKey(plugin, "obsidian_menu_button_id"), DataTypes.UUID)
 
         e.isCancelled = true
 

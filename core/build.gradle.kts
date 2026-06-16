@@ -83,7 +83,7 @@ if (project.hasProperty("NEXUS_USERNAME") && project.hasProperty("NEXUS_PASSWORD
                 pom {
                     name = rootProject.name
                     description.set(parent?.properties?.get("description") as String)
-                    url = "https://github.com/Adrigamer2950/AdriAPI"
+                    url = "https://github.com/Adrigamer2950/Obsidian"
 
                     licenses {
                         license {
@@ -100,12 +100,12 @@ if (project.hasProperty("NEXUS_USERNAME") && project.hasProperty("NEXUS_PASSWORD
                     }
 
                     scm {
-                        url = "https://github.com/Adrigamer2950/AdriAPI"
+                        url = "https://github.com/Adrigamer2950/Obsidian"
                     }
 
                     issueManagement {
                         system = "GitHub"
-                        url = "https://github.com/Adrigamer2950/AdriAPI/issues"
+                        url = "https://github.com/Adrigamer2950/Obsidian/issues"
                     }
                 }
             }
@@ -217,7 +217,7 @@ tasks.register("generateBuildConstants") {
             .addType(
                 TypeSpec.objectBuilder("BuildConstants")
                     .addProperty(
-                        PropertySpec.builder("ADRIAPI_VERSION", String::class)
+                        PropertySpec.builder("OBSIDIAN_VERSION", String::class)
                             .initializer("%S", rootProject.version as String)
                             .addModifiers(KModifier.CONST)
                             .build()

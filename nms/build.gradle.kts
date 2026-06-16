@@ -17,8 +17,6 @@ subprojects {
 
     if (this.name == "common") return@subprojects
 
-    apply(plugin = "maven-publish")
-
     afterEvaluate {
         dependencies {
             compileOnly(project(":nms:common"))

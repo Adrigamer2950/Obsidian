@@ -59,12 +59,10 @@ tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set("")
     archiveVersion.set(version as String)
 
+    exclude("META-INF/*.kotlin_module")
+
     dependencies {
-        relocate("com.alessiodp.libby", "me.devadri.obsidian.lib.libby")
-
         relocate("kotlin", "me.devadri.obsidian.lib.kotlin")
-
-        exclude("com/cryptomorin/xseries/**")
     }
 }
 

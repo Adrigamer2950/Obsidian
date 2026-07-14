@@ -133,10 +133,10 @@ tasks.named<RunServer>("runServer").configure {
 
     downloadPlugins {
         // ViaVersion
-        hangar("viaversion", "5.4.2")
+        hangar("viaversion", "5.11.0")
 
         // ViaBackwards
-        hangar("viabackwards", "5.4.2")
+        hangar("viabackwards", "5.11.0")
     }
 }
 

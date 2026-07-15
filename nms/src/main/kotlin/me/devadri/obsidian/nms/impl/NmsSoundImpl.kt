@@ -13,7 +13,6 @@ import me.devadri.obsidian.nms.reflection.resources.CraftNamespacedKeyRef
 import me.devadri.obsidian.nms.reflection.sounds.CraftSoundRef
 import me.devadri.obsidian.nms.reflection.sounds.SoundEventRef
 import me.devadri.obsidian.nms.reflection.sounds.SoundSourceRef
-import me.devadri.obsidian.nms.reflection.world.CraftWorldRef
 import org.bukkit.Sound
 import org.bukkit.SoundCategory
 import org.bukkit.entity.Player
@@ -56,15 +55,13 @@ class NmsSoundImpl : NmsSound {
             )
 
             else -> {
-                val world = CraftWorldRef.fromBukkit(player.location.world)
-
                 ClientboundSoundEntityPacketRef.createPost1_19_3(
                     HolderRef.directSound(nmsSound),
                     nmsCategory,
                     EntityRef.fromNMS(craftPlayer.handle.instance),
                     volume,
                     pitch,
-                    world.handle.random.nextLong()
+                    player.world.seed
                 )
             }
         }

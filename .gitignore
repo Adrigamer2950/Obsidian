@@ -119,3 +119,6 @@ plugin/run/
 
 # VS Code files
 .vscode/
+
+# Nextcloud
+.sync-exclude.lst

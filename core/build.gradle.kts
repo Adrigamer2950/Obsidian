@@ -135,7 +135,7 @@ dependencies {
     compileOnly(libs.xseries)
 
     implementation(project(":nms"))
-    implementation("xyz.jpenilla:reflection-remapper:0.1.3")
+    implementation(libs.reflection.remapper)
 
     testImplementation(kotlin("test"))
     testImplementation(libs.junit.platform.launcher)

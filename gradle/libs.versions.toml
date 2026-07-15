@@ -18,6 +18,7 @@ xseries = "13.8.0"
 junit-launcher = "6.1.2"
 mockbukkit = "3.1.0"
 slf4j = "2.0.18"
+reflection-remapper = "0.1.3"
 
 [libraries]
 paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper-api" }
@@ -29,6 +30,7 @@ boosted-yaml = { group = "dev.dejvokep", name = "boosted-yaml", version.ref = "b
 reflections = { group = "com.github.Adrigamer2950", name = "reflections", version.ref = "reflections" }
 kotlinpoet = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinpoet" }
 xseries = { group = "com.github.cryptomorin", name = "XSeries", version.ref = "xseries" }
+reflection-remapper = { group = "xyz.jpenilla", name = "reflection-remapper", version.ref = "reflection-remapper" }
 
 # Test
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit-launcher" }

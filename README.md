@@ -23,12 +23,6 @@ some issues if server owners install some plugins that depend on different versi
 > You need Java 17+ to use this API/Plugin. If you are using a lower version consider upgrading
 
 > [!WARNING]
-> You need to set your plugin to use Spigot mappings in order to preserve compatibility with 
-> Paper forks that are still using Spigot mappings, and also for Obsidian to work properly, as it
-> is compiled using Spigot mappings
-> More information in the [PaperMC documentation](https://docs.papermc.io/paper/dev/project-setup/#plugin-remapping)
-
-> [!WARNING]
 > Only Minecraft 1.17 or superior is officially supported. Versions below 1.17 will not receive any support
 
 ### It's mostly used in my plugins, but you can use it on your own plugins if you want, just make sure to give proper credit!

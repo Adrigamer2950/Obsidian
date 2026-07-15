@@ -22,7 +22,8 @@ enum class NmsVersions(vararg val versions: String) {
     V1_21_R4("1.21.5"),
     V1_21_R5("1.21.6", "1.21.7", "1.21.8"),
     V1_21_R6("1.21.9", "1.21.10"),
-    V1_21_R7("1.21.11");
+    V1_21_R7("1.21.11"),
+    V26("26.1", "26.1.1", "26.1.2", "26.2");
 
     val packageFormatted: String = name.replace("V", "v")
 

@@ -13,6 +13,7 @@ import me.devadri.obsidian.nms.reflection.resources.CraftNamespacedKeyRef
 import me.devadri.obsidian.nms.reflection.sounds.CraftSoundRef
 import me.devadri.obsidian.nms.reflection.sounds.SoundEventRef
 import me.devadri.obsidian.nms.reflection.sounds.SoundSourceRef
+import me.devadri.obsidian.nms.reflection.util.BukkitRegistryRef
 import org.bukkit.Sound
 import org.bukkit.SoundCategory
 import org.bukkit.entity.Player
@@ -20,6 +21,11 @@ import org.bukkit.entity.Player
 class NmsSoundImpl : NmsSound {
 
     override fun playToPlayer(player: Player, category: SoundCategory, sound: Sound, volume: Float, pitch: Float) {
+        @Suppress("DEPRECATION") val soundKey = when (NmsVersions.current) {
+            NmsVersions.V26 -> BukkitRegistryRef.SOUNDS.getKey(sound) ?: throw NullPointerException("Invalid sound name")
+            else -> sound.key
+        }
+
         val nmsSound = when (NmsVersions.current) {
             NmsVersions.V1_17_R1,
             NmsVersions.V1_18_R1,
@@ -32,11 +38,10 @@ class NmsSoundImpl : NmsSound {
             NmsVersions.V1_20_R3,
             NmsVersions.V1_20_R4,
             NmsVersions.V1_21_R1 ->
-                BuiltInRegistriesRef.SOUND_EVENT.get<SoundEventRef>(CraftNamespacedKeyRef.toMinecraft(sound.key))?.instance
+                BuiltInRegistriesRef.SOUND_EVENT.get<SoundEventRef>(CraftNamespacedKeyRef.toMinecraft(soundKey))?.instance
 
             else -> CraftSoundRef.bukkitToMinecraft(sound)?.instance
-        }
-            ?: throw IllegalArgumentException("Sound ${sound.name} not found")
+        } ?: throw IllegalArgumentException("Sound ${soundKey.key} not found")
 
         val nmsCategory = SoundSourceRef.fromSoundCategory(category)
 

@@ -16,17 +16,19 @@ class SoundSourceRef(val instance: Any) {
         fun fromSoundCategory(category: SoundCategory): SoundSourceRef {
             if (!classRef.isEnum) throw IllegalStateException("SoundSource isn't an enum")
 
-            val ssName = when (category) {
-                SoundCategory.MASTER -> "master"
-                SoundCategory.MUSIC -> "music"
-                SoundCategory.RECORDS -> "record"
-                SoundCategory.WEATHER -> "weather"
-                SoundCategory.BLOCKS -> "block"
-                SoundCategory.HOSTILE -> "hostile"
-                SoundCategory.NEUTRAL -> "neutral"
-                SoundCategory.PLAYERS -> "player"
-                SoundCategory.AMBIENT -> "ambient"
-                SoundCategory.VOICE -> "voice"
+            val ssName = when (category.name) {
+                "MASTER" -> "master"
+                "MUSIC" -> "music"
+                "RECORDS" -> "record"
+                "WEATHER" -> "weather"
+                "BLOCKS" -> "block"
+                "HOSTILE" -> "hostile"
+                "NEUTRAL" -> "neutral"
+                "PLAYERS" -> "player"
+                "AMBIENT" -> "ambient"
+                "VOICE" -> "voice"
+                "UI" -> "ui"
+                else -> throw NullPointerException("Unknown SoundCategory: $category")
             }
 
             val ss = classRef.enumConstants.filterIsInstance<Enum<*>>().firstOrNull { getNameMethod(it) == ssName }

@@ -1,37 +1,20 @@
 plugins {
     kotlin("jvm")
     id("java")
-    id("maven-publish")
+    //id("io.papermc.paperweight.userdev")
 }
 
-subprojects {
-    apply(plugin = "java")
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-
-    tasks.register("sourcesJar", Jar::class) {
-        from(sourceSets.main.get().kotlin)
-        archiveClassifier.set("sources")
-
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
-
-    if (this.name == "common") return@subprojects
-
-    afterEvaluate {
-        dependencies {
-            compileOnly(project(":nms:common"))
-        }
-
-        tasks.assemble {
-            finalizedBy(tasks.named("reobfJar"))
-        }
-    }
+dependencies {
+    compileOnly(libs.reflections)
+    compileOnly(libs.paper.api)
+    //paperweight.paperDevBundle("1.17.1-R0.1-SNAPSHOT")
+    compileOnly("xyz.jpenilla:reflection-remapper:0.1.3")
 }
 
-tasks.build {
-    enabled = false
+val targetJavaVersion = (rootProject.properties["java-version"] as String).toInt()
+
+kotlin {
+    jvmToolchain(targetJavaVersion)
 }
 
-tasks.jar {
-    enabled = false
-}
+//paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.REOBF_PRODUCTION

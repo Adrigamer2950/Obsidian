@@ -10,6 +10,7 @@ import me.devadri.obsidian.library.manager.LibraryManager
 import me.devadri.obsidian.library.manager.LibraryManagerImpl
 import me.devadri.obsidian.logger.Logger
 import me.devadri.obsidian.logger.impl.LoggerImpl
+import me.devadri.obsidian.nms.reflection.ReflectionLoader
 import me.devadri.obsidian.scheduler.provider.SchedulerProvider
 import me.devadri.obsidian.scheduler.task.ScheduledTask
 import me.devadri.obsidian.util.ServerType
@@ -137,6 +138,9 @@ abstract class ObsidianPlugin : JavaPlugin {
 
         logger.debug("&6Auto-registering listeners & commands...")
         autoRegister()
+
+        logger.debug("Pre-loading all reflected NMS functions")
+        ReflectionLoader.initalizeAllReflections()
 
         onPostLoad()
 

@@ -98,7 +98,16 @@ modrinth {
             "1.21.3",
             "1.21.4",
             "1.21.5",
-            "1.21.6"
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.21.10",
+            "1.21.11",
+            "26.1",
+            "26.1.1",
+            "26.1.2",
+            "26.2"
         )
     )
     loaders.set(
@@ -121,7 +130,7 @@ hangarPublish {
             register(Platforms.PAPER) {
                 jar.set(tasks.shadowJar.get().archiveFile)
 
-                val versions: List<String> = listOf("1.17-1.21.6")
+                val versions: List<String> = listOf("1.17-26.2")
                 platformVersions.set(versions)
             }
         }
@@ -133,10 +142,10 @@ tasks.named<RunServer>("runServer").configure {
 
     downloadPlugins {
         // ViaVersion
-        hangar("viaversion", "5.4.2")
+        hangar("viaversion", "5.11.0")
 
         // ViaBackwards
-        hangar("viabackwards", "5.4.2")
+        hangar("viabackwards", "5.11.0")
     }
 }
 

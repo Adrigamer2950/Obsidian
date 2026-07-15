@@ -121,10 +121,8 @@ dependencies {
     compileOnly(libs.jansi)
 
     implementation(libs.libby)
-    sourcesImplementation(libs.libby)
 
     implementation(project(":folia"))
-//    sourcesImplementation(project(":folia"))
 
     compileOnly(libs.boosted.yaml)
     testImplementation(libs.boosted.yaml)
@@ -136,33 +134,8 @@ dependencies {
     api(libs.xseries)
     compileOnly(libs.xseries)
 
-    implementation(project(":nms:common")) {
-        isTransitive = false
-    }
-
-    // NMS 1.17
-    implementation(project(":nms:1_17_R1", "reobf"))
-
-    // NMS 1.18
-    implementation(project(":nms:1_18_R1", "reobf"))
-    implementation(project(":nms:1_18_R2", "reobf"))
-
-    // NMS 1.19
-    implementation(project(":nms:1_19_R1", "reobf"))
-    implementation(project(":nms:1_19_R2", "reobf"))
-    implementation(project(":nms:1_19_R3", "reobf"))
-
-    // NMS 1.20
-    implementation(project(":nms:1_20_R1", "reobf"))
-    implementation(project(":nms:1_20_R2", "reobf"))
-    implementation(project(":nms:1_20_R3", "reobf"))
-    implementation(project(":nms:1_20_R4", "reobf"))
-
-    // NMS 1.21
-    implementation(project(":nms:1_21_R1", "reobf"))
-    implementation(project(":nms:1_21_R2", "reobf"))
-    implementation(project(":nms:1_21_R3", "reobf"))
-    implementation(project(":nms:1_21_R4", "reobf"))
+    implementation(project(":nms"))
+    implementation("xyz.jpenilla:reflection-remapper:0.1.3")
 
     testImplementation(kotlin("test"))
     testImplementation(libs.junit.platform.launcher)

@@ -1,5 +1,6 @@
 package me.devadri.obsidian.nms.reflection.player
 
+import me.devadri.obsidian.nms.NmsComparisonResult
 import me.devadri.obsidian.nms.NmsVersions
 import me.devadri.obsidian.nms.reflection.ReflectionUtil
 import org.bukkit.entity.Player
@@ -10,20 +11,17 @@ class CraftPlayerRef(val instance: Any) {
 
     companion object {
 
-        val classRef = ReflectionUtil.remapClass(when (NmsVersions.current) {
-            NmsVersions.V1_17_R1,
-            NmsVersions.V1_18_R1,
-            NmsVersions.V1_18_R2,
-            NmsVersions.V1_19_R1,
-            NmsVersions.V1_19_R2,
-            NmsVersions.V1_19_R3,
-            NmsVersions.V1_20_R1,
-            NmsVersions.V1_20_R2,
-            NmsVersions.V1_20_R3 -> "org.bukkit.craftbukkit.${NmsVersions.current.packageFormatted}.entity.CraftPlayer"
+        val classRef = ReflectionUtil.remapClass(
+            when (NmsVersions.compareCurrent(NmsVersions.V1_20_R3)) {
+                NmsComparisonResult.EQUAL,
+                NmsComparisonResult.OLDER -> "org.bukkit.craftbukkit.${NmsVersions.current.packageFormatted}.entity.CraftPlayer"
 
-            else -> "org.bukkit.craftbukkit.entity.CraftPlayer"
-        }) ?: throw RuntimeException("Could not get CraftPlayer class")
-        val handleMethod = ReflectionUtil.remapMethod(classRef, "getHandle") ?: throw RuntimeException("Could not get CraftPlayer#getHandle method")
+                else -> "org.bukkit.craftbukkit.entity.CraftPlayer"
+            }
+        ) ?: throw RuntimeException("Could not get CraftPlayer class")
+
+        val handleMethod = ReflectionUtil.remapMethod(classRef, "getHandle")
+            ?: throw RuntimeException("Could not get CraftPlayer#getHandle method")
 
         fun fromBukkit(player: Player): CraftPlayerRef = CraftPlayerRef(player)
     }

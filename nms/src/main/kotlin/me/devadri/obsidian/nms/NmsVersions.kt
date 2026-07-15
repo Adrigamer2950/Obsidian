@@ -28,9 +28,29 @@ enum class NmsVersions(vararg val versions: String) {
     val packageFormatted: String = name.replace("V", "v")
 
     companion object {
-        @JvmField
         val current: NmsVersions = entries.firstOrNull {
             it.versions.contains(Bukkit.getMinecraftVersion())
         } ?: throw IllegalStateException("Nms version not found")
+
+        fun compare(a: NmsVersions, b: NmsVersions): NmsComparisonResult {
+            return if (a.ordinal > b.ordinal) {
+                NmsComparisonResult.NEWER
+            } else if (a.ordinal < b.ordinal) {
+                NmsComparisonResult.OLDER
+            } else {
+                NmsComparisonResult.EQUAL
+            }
+        }
+
+        fun compareCurrent(b: NmsVersions): NmsComparisonResult {
+            return compare(current, b)
+        }
     }
+}
+
+enum class NmsComparisonResult {
+
+    OLDER,
+    NEWER,
+    EQUAL
 }

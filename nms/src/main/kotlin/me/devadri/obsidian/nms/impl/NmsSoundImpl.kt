@@ -2,6 +2,7 @@
 
 package me.devadri.obsidian.nms.impl
 
+import me.devadri.obsidian.nms.NmsComparisonResult
 import me.devadri.obsidian.nms.NmsSound
 import me.devadri.obsidian.nms.NmsVersions
 import me.devadri.obsidian.nms.reflection.entity.EntityRef
@@ -21,23 +22,16 @@ import org.bukkit.entity.Player
 class NmsSoundImpl : NmsSound {
 
     override fun playToPlayer(player: Player, category: SoundCategory, sound: Sound, volume: Float, pitch: Float) {
-        @Suppress("DEPRECATION") val soundKey = when (NmsVersions.current) {
-            NmsVersions.V26 -> BukkitRegistryRef.SOUNDS.getKey(sound) ?: throw NullPointerException("Invalid sound name")
+        @Suppress("DEPRECATION") val soundKey = when (NmsVersions.compareCurrent(NmsVersions.V26)) {
+            NmsComparisonResult.EQUAL,
+            NmsComparisonResult.NEWER -> BukkitRegistryRef.SOUNDS.getKey(sound) ?: throw NullPointerException("Invalid sound name")
+
             else -> sound.key
         }
 
-        val nmsSound = when (NmsVersions.current) {
-            NmsVersions.V1_17_R1,
-            NmsVersions.V1_18_R1,
-            NmsVersions.V1_18_R2,
-            NmsVersions.V1_19_R1,
-            NmsVersions.V1_19_R2,
-            NmsVersions.V1_19_R3,
-            NmsVersions.V1_20_R1,
-            NmsVersions.V1_20_R2,
-            NmsVersions.V1_20_R3,
-            NmsVersions.V1_20_R4,
-            NmsVersions.V1_21_R1 ->
+        val nmsSound = when (NmsVersions.compareCurrent(NmsVersions.V1_21_R1)) {
+            NmsComparisonResult.EQUAL,
+            NmsComparisonResult.OLDER ->
                 BuiltInRegistriesRef.SOUND_EVENT.get<SoundEventRef>(CraftNamespacedKeyRef.toMinecraft(soundKey))?.instance
 
             else -> CraftSoundRef.bukkitToMinecraft(sound)?.instance
@@ -47,11 +41,9 @@ class NmsSoundImpl : NmsSound {
 
         val craftPlayer = CraftPlayerRef.fromBukkit(player)
 
-        val packet = when (NmsVersions.current) {
-            NmsVersions.V1_17_R1,
-            NmsVersions.V1_18_R1,
-            NmsVersions.V1_18_R2,
-            NmsVersions.V1_19_R1 -> ClientboundSoundEntityPacketRef.createPre1_19_3(
+        val packet = when (NmsVersions.compareCurrent(NmsVersions.V1_19_R1)) {
+            NmsComparisonResult.EQUAL,
+            NmsComparisonResult.OLDER -> ClientboundSoundEntityPacketRef.createPre1_19_3(
                 nmsSound,
                 nmsCategory,
                 EntityRef.fromNMS(craftPlayer.handle.instance),

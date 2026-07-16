@@ -148,8 +148,6 @@ tasks.named<ShadowJar>("shadowJar") {
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    exclude("META-INF/*.kotlin_module")
-
     dependencies {
         relocate("com.alessiodp.libby", "me.devadri.obsidian.lib.libby")
 

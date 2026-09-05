@@ -17,7 +17,7 @@ xseries = "13.8.0"
 # Test
 junit-launcher = "6.1.3"
 mockbukkit = "3.1.0"
-slf4j = "2.0.18"
+slf4j = "2.0.19"
 reflection-remapper = "0.1.3"
 
 [libraries]
